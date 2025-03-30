@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/global.css">
+    <link rel="stylesheet" href="CSS/chatbot.css">
+    <link rel="stylesheet" href="CSS/application_form.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+
+</head>
+
+<body>
+    <div class="navigationBoxContainer">
+        <header>
+            <nav class="navigationBox">
+                <a href="1.0_studentPortal_homepage.html"><img src="Assets/rave_wbl_logo_v2.png" class="rave-wbl-logo"></a>
+                <a href="1.1_course.html" class="links">Course</a>
+                <a href="1.2_account_management_page.html" class="links">Acccount Management</a>
+                <a href="1.3_about_rave_wbl_page.html" class="links">About Rave WBL</a>
+                <a href="1.4_account_page.html"><img src="Assets/account_icon.png" class="accountIcon"></a>
+            </nav>
+        </header>
+    </div>
+    <br></br>
+    <div class="chatbot-container">
+        <button class="chatbot-button"><img src="Assets/chat_icon.png"></button>
+    </div>
+    <h1 style="text-align: center;">APPLICATION PAGE</h1><br></br>
+    <p>Please fill the form bellow to complete your application</p>
+    <br></br>
+    <div class="application-form">
+        <form name="application-form" action="http://localhost:8080/harrington_star_form">
+            <div class="personal-statement">
+                <h1>PERSONAL STATEMENT</h1>
+                <label>Student ID</label><input type="number" id="Student_id" required><br></br>
+                <label>First Name*</label><input type="text" id="First_Name" required><br></br>
+                <label>Middle Name</label><input type="text" id="Middle_Name"><br></br>
+                <label>Last Name*</label><input type="text" id="Last_Name" required><br></br>
+                <label>Email Address*</label><input type="email" id="Student_Email" required><br></br>
+                <label>Course*</label><input type="text" id="Course"required><br></br>
+                <label>Gender*</label><input type="text" id="Gender" required><br></br>
+            </div>
+            <br></br>
+
+            <div class="Avalability">
+                <h1>AVALABILITY</h1>
+                <label for="Avalability">Please insert the days you are Avalabile</label>
+                <br></br>
+                <input type="text" id="Avalability"><button type="button" value="addAvalability" id="addAvalability">ADD</button>
+                <ul style="display: none;" id="avalableList"></ul>
+            </div>
+            <br></br>
+
+            <div class="skills" id="skills">
+                <h1>SKILLS</h1>
+                <label>Skills*</label><input type="text" id="Skills"  ><button type="button" id="addSkills">ADD</button>
+                <ul id="skillsList" style="display: none;"></ul>
+            </div>
+            <br></br>
+
+            <div class="experience">
+                <h1>EXPERIENCE</h1>
+                <label>Title*</label>
+                <b><p>If you have no experience, then insert "N/A"</p></b>
+                <input type="text" id="Experience_Name"  required> <button type="button" id="addExperiences">ADD</button>
+                <ul id="experienceList" style="display: none;"></ul>
+            </div>
+            <br></br>
+
+            <div class="certtification">
+                <h1>CERTIFICATION</h1>
+                <label>Name of the Certification*</label>
+                <b><p>If you have no certification, then insert "N/A"</p></b>
+                <input type="text" id="Name_of_certification"  required> <button type="button" id="addCertification">ADD</button>
+                <ul id="certificationList" style="display: none;"></ul>
+            </div>
+            <br></br>
+
+            <div class="wbl">
+                <h1>WBL</h1>
+                <label>Are You Currently Enrolled In WBL Course?</label><br></br>
+                <label for="isWblStudent">Yes<input type="radio" name="isEnrolled" id="isWblStudent" ></label>
+                <label for="isNotWblStudent">No<input type="radio" name="isEnrolled" id="isNotWblStudent"></label>
+            </div>
+            <br></br>
+
+            <div class="document">
+                <h1>DOCUMENT /  LINK</h1>
+                <label>Document</label><input type="file" accept="application/pdf" multiple="multiple" id="Document">
+                <ul id="documentList" style="display: none;"></ul>
+                <br></br>
+            </div>
+            <div class="link">
+                <label>Link</label><input type="text" id="Link"><button type="button" id="addLink">ADD</button>
+                <ul id="linkList" style="display: none;"></ul>
+            </div>
+            
+        </form>
+    </div>
+    <br></br>
+    <button type="submit" id="submitBtn" class="submit" onclick="Application_Form(event)">SUBMIT</button>
+
+    <br></br>
+    <div class="footer-container">
+        <footer>
+            <img src="Assets/rave_wbl_logo_v2.png">
+            <p>Copyright &copy; Rave WBL All Rights Reserved</p>
+        </footer>
+    </div>
+<script src="JavaScript/application_form.js"></script>
+
+
+</body>
+
+</html>

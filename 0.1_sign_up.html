@@ -1,0 +1,115 @@
+<!DOCTYPE html> <!--Using "<!DOCTYPE>" tag  is used to  defines that this is a html documents-->
+<html> <!-- Using "<html>" tag is used  for  main tag that starts the html documents-->
+
+<head> <!--Using "<head>" tag is used to add stylesheet which will be supported in styling the header, footer, chatbot and overview of the website. Additionally it also contains the name of the tab of the website-->
+    <title>Rave WBL - Sign Up Page</title> <!--Using "<title>" tag is used to define the name of the tab, which will be called "Rave WBL - Login Page"-->
+    <meta charset="UTF-8"> <!--Using "<meta>" tag with attribute of "charset" which deals with how should characters should be stored, by using the charset type of "UTF (Unicode Transform Unit)-8" this can store all special sybols and different languages-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Using meta tag with attribute of "name" which defines the name of the meta tag which will be "viewpoint" since it deals with making the system responsive to all devices where the "content="width=device-width" makes the webpage fit into all devices, without other elements getting squashed, and "initial-scale=1.0" sets the zoom level which will be 1.0 -->
+    <link rel="stylesheet" href="CSS/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+
+</head> <!--Close the head tag-->
+
+<body> <!--body tag is used to store all contents within the webpage-->
+    <img src="Assets/rave_wbl_logo_v2.png" width="200px" height="200px" alt="Rave WBL Logo" style="display: block; margin: auto;">
+    <div class="login-container">
+        <h1 style="text-align: center;">SIGN UP</h1>
+        <div class="checkbox-option">
+            <label for="studentChoice" style="font-size: 32px;">Student</label><input type="radio" id="studentChoice" style="width: 22px; height: 22px;" name="userType" value="Student">
+            <label for="staffChoice" style="font-size: 32px;">Staff</label><input type="radio" id="staffChoice"  style="width: 22px; height: 22px;" name="userType" value="Staff">
+            <label for="adminChoice" style="font-size: 32px;">Admin</label><input type="radio" id="adminChoice"  style="width: 22px; height: 22px;" name="userType" value="Admin">
+        </div>
+        <br></br>
+        <div class="student-login-input">
+            <form method="post" action="http://localhost:8080/add-user">
+                <input type="number" placeholder="Enter University ID" name="studentOrStaffId" id="studentOrStaffId"><br></br>
+                <input type="email" placeholder="Enter University Email" name="EmailAddress" id="studentEmailAddress"><br></br>
+                <input type="password" placeholder="Enter University Password" name="Password" id="studentPassword"><br></br>
+                <button type="submit" onclick="addAccount(event)">SIGN UP</button><br></br>
+                <a href="0.2_login_page.html">Login If you have an account</a>
+            </form>
+        </div>
+    </div>
+    
+
+
+<script>
+
+    function ToggleUserTypeChoice(){
+            let userType = null
+            staffChoice = document.getElementById("staffChoice")
+            studentChoice = document.getElementById("studentChoice")
+            adminChoice = document.getElementById("adminChoice")
+
+            if(studentChoice.checked){
+                userType = "Student"
+                
+
+            }else if(staffChoice.checked){
+                userType = "Staff"
+            }else if(adminChoice){
+                userType = "Admin"
+            }
+        }
+        document.getElementById("studentChoice").addEventListener('change', ToggleUserTypeChoice)
+        document.getElementById("staffChoice").addEventListener('change', ToggleUserTypeChoice)
+        document.getElementById("adminChoice").addEventListener('change', ToggleUserTypeChoice)
+
+
+
+
+
+
+    async function addAccount(event) {
+        event.preventDefault()
+        const studentOrStaffId = document.getElementById("studentOrStaffId").value
+        const EmailAddress = document.getElementById("studentEmailAddress").value;
+        const Password = document.getElementById("studentPassword").value;
+        const userType = document.querySelector('input[name="userType"]:checked')?.value;
+
+        if(studentOrStaffId === ""||EmailAddress==="" || Password==="" || !userType){
+            alert("Make sure you have filled all the required field")
+            return;
+        }else if(studentOrStaffId.length !== 8){
+            alert("Your Account ID must be 8 digit long")
+            return;
+        }else if(!EmailAddress.endsWith("@rave.ac.uk")){
+            alert("It should be a university email")
+            return;
+        }else if(Password.length < 12){
+            alert("Password must be at least 12 character long")
+            return
+        }
+       
+        try{
+            const processUserDetail = await fetch('http://localhost:8080/add-user', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({studentOrStaffId, EmailAddress, Password, userType:userType}),
+        })
+        const userDetail = await processUserDetail.json()
+
+        if(processUserDetail.ok){
+            if(userType === "Student"){
+                window.location.href = '1.0_studentPortal_homepage.html'
+            } else if(userType === "Staff"){
+                window.location.href = '2.0_staffPortal_homepage.html'
+            } else if(userType === "Admin"){
+                window.location.href = '3.0_admin.html'
+            }
+        }else{
+            alert("You have already signed up with this account, please log in")
+        }
+        } catch(err){
+            console.log(err)
+        }
+        
+    }
+
+
+    
+</script>
+
+</body> <!--Close body tag-->
+</html> <!--Close html tag-->

@@ -1,0 +1,113 @@
+<!DOCTYPE html> <!--Using "<!DOCTYPE>" tag  is used to  defines that this is a html documents-->
+<html> <!-- Using "<html>" tag is used  for  main tag that starts the html documents-->
+
+<head>  <!--Using "<head>" tag is used to add stylesheet which will be supported in styling the header, footer, chatbot and overview of the website. Additionally it also contains the name of the tab of the website-->
+    <title>AWS -Front End Development Job Description</title> <!--Using "<title>" tag is used to define the name of the tab, which will be called "AWS -Front End Development Job Description"-->
+    <meta charset="UTF-8"> <!--Using "<meta>" tag with attribute of "charset" which deals with how should characters should be stored, by using the charset type of "UTF (Unicode Transform Unit)-8" this can store all special sybols and different languages-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Using meta tag with attribute of "name" which defines the name of the meta tag which will be "viewpoint" since it deals with making the system responsive to all devices where the "content="width=device-width" makes the webpage fit into all devices, without other elements getting squashed, and "initial-scale=1.0" sets the zoom level which will be 1.0 -->
+    <link rel="stylesheet" href="CSS/header.css"> <!--Using "<link>" tag to link the CSS document (using rel attribute of "stylesheet") to global.css which deals with the overall website design-->
+    <link rel="stylesheet" href="CSS/header.css"> <!--Using "<link>" tag to link the CSS document (using rel attribute of "stylesheet") to header.css which deals with the header design-->
+    <link rel="stylesheet" href="CSS/footer.css"> <!--Using "<link>" tag to link the CSS document (using rel attribute of "stylesheet") to footer.css which deals with the footer  design-->
+    <link rel="stylesheet" href="CSS/chatbot.css"> <!--Using "<link>" tag to link the CSS document (using rel attribute of "stylesheet") to chatbot.css which deals with the chatbot  design-->
+    <link rel="stylesheet" href="CSS/job_description.css"> <!--Using <link> tag to link the CSS document (using rel attribute of "stylesheet") to "job_description.css" which deals with the job description page design-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+
+</head> <!--Close the head tag-->
+
+<body> <!--body tag is used to store all contents within the webpage-->
+    <div class="navigationBoxContainer">
+        <header>
+            <nav class="navigationBox">
+                <a href="2.0_staffPortal_homepage.html"><img src="Assets/rave_wbl_logo_v2.png" class="rave-wbl-logo"> </a>
+                <a href="2.1_staff_portal_job_portal.html" class="links">Jobs Portal</a>
+                <a href="2.2_staff_portal_student_progress.html" class="links">Student Progress</a>
+                <a href="2.3_staff_portal_job_post_form_page.html" class="links">Job Post</a>
+                <a href="2.4_staff_portal_account_page.html"><img src="Assets/account_icon.png" class="accountIcon"></a>
+            </nav>
+        </header>
+    </div>
+    <br></br>
+
+    <!---------------------------------CHATBOT----------------------------------------------------->
+    <div class="chatbot-container"> <!--Using "<div>" tag to add a component of chatbot, this holds all elements that will be included in the chatbot button. Additionally, attribute of "class" which is named "chatbot-container" is used as a reference when using css to style this component -->
+        <button class="chatbot-button"><img src="Assets/chat_icon.png"></button> <!--Using "<button>" tag to add a button which will be used for opening the chatbot once the button has been clicked, "<img>" is stored inside the button tag which will be a chat icon ("src="Assets/chat_icon.png"")-->
+    </div> <!--Close the div tag-->
+    <!---------------------------------------------------------------------------------------------->
+
+
+    <!---------------------------------------------------AWS FRONT END DEVELOPMENT JOB DESCRIPTION----------------------------------------------------------------------------------------->
+    <div class="job-title"> <!--Using "<div>" tag to add a component of AWS job title, this holds all elements that will be included in the AWS introduction. Additionally, attribute of "class" which is named "job-title" is used as a reference when using css to style this component -->
+        <div><img src="Assets/aws_logo.png" class="aws_logo" width="316" height="189" alt="AWS Logo"></div> <!--Using "<img>" tag to insert AWS logo of AWS (src="Assets/aws_logo.png"). Also using "width" and "height" to size the image by 316x189. Additionally, "alt" attribute is used to add image name -->
+        <div class="job-summary-container"> <!--Using "<div>" tag which holds AWS details such as job name, industry, location, meeting type and job type. Additionally, attribute of "class" which is named "job-summary-container" is used as a reference when using css to style this component -->
+            <span class="description">Front end development</span> <!--Using "<span>" tag to insert the name of the job ("Front End Development"), additionally, span prevents the element from adding new line once elements are added, also inline styling is used to define the font size, which is in "style" attribute-->
+            <span class="description" style="color: #938484; font-size: 24;">AWS</span> <!--Using "<span>" tag to insert the industry of the job ("AWS"), additionally, span prevents the element from adding new line once elements are added, also inline styling is used to define the font size and colour (written in hex code), which is in "style" attribute-->
+            <span class="description" style="color: #D27E7E; font-size: 24;">London England</span> <!--Using "<span>" tag to insert the location of the job ("London England"), additionally, span prevents the element from adding new line once elements are added, also inline styling is used to define the font size and colour (written in hex code), which is in "style" attribute-->
+            <span class="description" style="color: #604F4F; font-size: 24;">Remote or In Person</span> <!--Using "<span>" tag to insert the meeting type of the  job ("Remote Or In Person"), additionally, span prevents the element from adding new line once elements are added, also inline styling is used to define the font size and colour (written in hex code), which is in "style" attribute-->
+            <span class="description" style="color: #44B527; font-size: 24;">Internship</span> <!--Using "<span>" tag to insert the job type ("Internship"), additionally, span prevents the element from adding new line once elements are added, also inline styling is used to define the font size and colour (written in hex code), which is in "style" attribute-->
+        </div> <!--Close the div tag-->
+    </div> <!--Close the div tag-->
+
+    <div class="job-description"> <!--Using "<div>" tag to add a component of AWS job description, this holds all elements that will be included in the AWS description. Additionally, attribute of "class" which is named "job-description" is used as a reference when using css to style this component -->
+        <div class="about-the-role"> <!--Using "<div>" tag which holds AWS role details. Additionally, attribute of "class" which is named "about-the-role" is used as a reference when using css to style this component -->
+            <h1 style="font-size: 36px;">ABOUT THE ROLE</h1> <!--Using "<h1>" tag to give the heading, which states "ABOUT THE ROLE", it includes a incline styling of font size whihc is set to 36 pixels-->
+            <p style="font-size: 32px;">With boundless ambition, we’re showing no signs of slowing down so we’re on the
+                lookout to add a Frontend Developer to our growing internal development team. The successful candidate 
+                will support our development team in building, optimising and delivering scalable and reliable software.</p> <!--Using "<p>" tag to add a text about the AWS role, it includes a incline styling of  font size which is set to 32 pixels-->
+        </div> <!--Close the div tag-->
+        <br></br> <!--Using "<br>" tag to add space-->
+
+        <div class="what-you-will-do"> <!--Using "<div>" tag which holds responsibility of AWS. Additionally, attribute of "class" which is named "what-you-will-do" is used as a reference when using css to style this component -->
+            <h1 style="font-size: 36px;">WHAT YOU WILL DO?</h1> <!--Using "<h1>" tag to give the heading, which states "WHAT YOU WILL DO?", it includes a incline styling of font size whihc is set to 36 pixels-->
+            <li style="font-size: 32px;">Develop and maintain user interfaces for web applications using ReactJS</li> <!--Using "<li>" to give the list of responsibility, it also includes inline styling of font size which is set to 32 pixels-->
+            <li style="font-size: 32px;">Collaborate with designers and backend developers to ensure high-quality and consistent user experience </li> <!--Using "<li>" to give the list of responsibility, it also includes inline styling of font size which is set to 32 pixels-->
+            <li style="font-size: 32px;">Implement responsive designs from provided Figma files</li> <!--Using "<li>" to give the list of responsibility, it also includes inline styling of font size which is set to 32 pixels-->
+            <li style="font-size: 32px;">Implement state management with Redux for interactivity</li> <!--Using "<li>" to give the list of responsibility, it also includes inline styling of font size which is set to 32 pixels-->
+            <li style="font-size: 32px;">Write clean, reusable, and well-documented code following best practices and standards</li> <!--Using "<li>" to give the list of responsibility, it also includes inline styling of font size which is set to 32 pixels-->
+            <li style="font-size: 32px;">Test, debug, and optimise web applications for performance and accessibility.</li> <!--Using "<li>" to give the list of responsibility, it also includes inline styling of font size which is set to 32 pixels-->
+        </div>
+        <br></br>
+
+        <div class="what-we-offer"> <!--Using "<div>" tag which holds offers of AWS. Additionally, attribute of "class" which is named "what-we-offer" is used as a reference when using css to style this component -->
+            <h1 style="font-size: 36px;">WHAT WE OFFER?</h1> <!--Using "<h1>" tag to give the heading, which states "WHAT WE OFFER?", it includes a incline styling of font size whihc is set to 36 pixels-->
+            <li style="font-size: 32px;">Flexible working hours and remote work options</li> <!--Using "<li>" to give the list of offers, it also includes inline styling of font size which is set to 32 pixels-->
+            <li style="font-size: 32px;">Opportunity to work on exciting and innovative projects</li> <!--Using "<li>" to give the list of offers, it also includes inline styling of font size which is set to 32 pixels-->
+            <li style="font-size: 32px;">Professional development and career growth</li> <!--Using "<li>" to give the list of offers, it also includes inline styling of font size which is set to 32 pixels-->
+            <li style="font-size: 32px;">Agile and flexible working environment with shallow hierarchy and strong entrepreneurial spirit</li> <!--Using "<li>" to give the list of offers, it also includes inline styling of font size which is set to 32 pixels-->
+            <li style="font-size: 32px;">Competitive salary</li> <!--Using "<li>" to give the list of offers, it also includes inline styling of font size which is set to 32 pixels-->
+        </div> <!--Close the div tag-->
+        <br></br> <!--Using "<br>" tag to add space-->
+
+        <div class="start-end-date"> <!--Using "<div>" tag which holds start and end date of AWS. Additionally, attribute of "class" which is named "start-end-date" is used as a reference when using css to style this component -->
+            <img src="Assets/calander_icon.png" width="87" height="96" alt="Calander Icon"> <!--Using "<img>" tag to insert Calander icon  (src="Assets/calander_icon.png"). Also using "width" and "height" to size the image by 87x96. Additionally, "alt" attribute is used to add image name -->
+            <p style="font-size: 32px;"><span style="font-weight: bold;">START: </span>12th June 2025</p> <!--Using "<p>" tag to insert the start date of AWS front end development job, additionally, it uses "<span>" tag prevents the element from adding new line once elements are added, also inline styling is used to define the font size of 32 pixels for date and set font weight to bold for "START", which is in "style" attribute-->
+            <p style="font-size: 32px;"><span style="font-weight: bold;">END: </span> 12th SEPTEMBER 2025</p> <!--Using "<p>" tag to insert the end date of AWS front end development job, additionally, it uses "<span>" tag prevents the element from adding new line once elements are added, also inline styling is used to define the font size of 32 pixels for date and set font weight to bold for "END", which is in "style" attribute-->
+        </div> <!--Close the div tag-->
+        <br></br> <!--Using "<br>" tag to add space-->
+
+        <div class="contact-detail"> <!--Using "<div>" tag which holds contact details of AWS. Additionally, attribute of "class" which is named "contact-detail" is used as a reference when using css to style this component -->
+            <img src="Assets/email_icon.png" width="87" height="96" alt="Email Icon"> <!--Using "<img>" tag to insert Email icon  (src="Assets/email_icon.png"). Also using "width" and "height" to size the image by 87x96. Additionally, "alt" attribute is used to add image name -->
+            <p style="font-size: 32px;"> AWS@Gmail.com</p> <!--Using "<p>" tag to add a text in AWS email address, it includes a incline styling of  font size which is set to 32 pixels-->
+        </div> <!--Close the div tag-->
+        <br></br> <!--Using "<br>" tag to add space-->
+
+        <div class="location"> <!--Using "<div>" tag which holds location of AWS. Additionally, attribute of "class" which is named "location" is used as a reference when using css to style this component -->
+            <img src="Assets/location_icon.png" width="87" height="96" alt="Location Icon"> <!--Using "<img>" tag to insert Location icon  (src="Assets/location_icon.png"). Also using "width" and "height" to size the image by 87x96. Additionally, "alt" attribute is used to add image name -->
+            <p style="font-size: 32px;">London England</p> <!--Using "<p>" tag to add a text in the location of the job, it includes a incline styling of  font size which is set to 32 pixels-->
+        </div> <!--Close the div tag-->
+        <br></br> <!--Using "<br>" tag to add space-->
+    </div> <!--Close the div tag-->
+    <br></br> <!--Using "<br>" tag to add space-->
+
+
+
+    <!------------------------------------------------FOOTER------------------------------------------------------------------------->
+    <div class="footer-container"> <!--Using "<div>" tag to add a component of footer, this holds all elements that will be included in the footer  (footer). Additionally, attribute of "class" which is named "footer-container" is used as a reference when using css to style this component -->
+        <footer> <!--Using "<footer>" tag to insert footer of the webpage, this will hold all footer elements-->
+            <img src="Assets/rave_wbl_logo_v2.png" alt="Rave WBL Logo"> <!--Using "<img>" tag to insert aws logo of Rave WBL (src="Assets/rave_wbl_logo.png"). Additionally, "alt" attribute is used to add image name -->
+            <p>Copyright &copy; Rave WBL All Rights Reserved</p> <!--Using "<p>" tag to insert a text within the footer which will state the copy right, it uses "&copy" which inserts  "©"-->
+        </footer>  <!--Close footer tag-->
+    </div>  <!--Close div tag-->
+    <!------------------------------------------------------------------------------------------------------------------------->
+
+</body> <!--Close body tag-->
+</html> <!--Close html tag-->

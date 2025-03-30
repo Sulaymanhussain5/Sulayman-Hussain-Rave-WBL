@@ -1,0 +1,25 @@
+.account-img img { /*The class name in div ("account-img") which styles  img tag*/
+    display: block; /*Using block method in "display" which adds block to the image tag, where it makes it easier for the image element to align to the center of the page */
+    border-radius: 50%; /*Setting the border radius to "50%" which means that it turns the image tag to circular, whuch is a best shape to have once inserting account profile picture */
+    object-fit: cover; /*Adding object fit to of "cover" whuch means that images fits in the div elements instead of adding stretches to the image or the image going out of the container */
+    border: 1px solid black; /*Adding border of 10 pixels around the elements  with solid type which is coloured as black  */
+    margin: auto; /*Adding margin of "auto" which means that it automatically centers the image center horrinzontally  */
+}
+
+.account-info-container { /*The class name in div ("account-info-container") */
+    display: grid; /*Using grid method in "display" which adds grids to the elements  within the form tag in, which is used to organise the container in coloumns */
+    grid-template-columns: repeat(2, 1fr); /*Adding "grid-template-columns" to lay out the elements in columns where 2 containers are added in 1 space before moving to next line of the page and each coloumns gets 1 equal space ("repeat(2, 1fr)", whee fr stands for "fraction"*/
+    gap: 50px; /*Adding "gap" of 50 pixels in adding space when adding container in the new line*/
+}
+
+.account-info-container div { /*The class name in div ("account-info-container") which styles div tags */
+    border: 10px solid black; /*Adding border of 10 pixels around the elements  with solid type which is coloured as black  */
+    border-radius: 10px; /*Adding "border-radius" of 10 pixels which means that it makes the corner curved by 10 pixels  */
+}
+
+.link{ /*The class name in div ("link") */
+    position: relative; /*Adding position of "relative" which allows the elements to be moved in to specific position based in the direction it has been given */
+    left: 730px; /*Moving the link to left side by 730 pixels */
+    font-size: 20px; /*Setting the font size of the link to 20 pxiels */
+}
+

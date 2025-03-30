@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>STAFF PORTAL HOMEPAGE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/global.css">
+    <link rel="stylesheet" href="CSS/account.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/student_progress_table.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+
+</head>
+
+<body>
+    <div class="navigationBoxContainer">
+        <header>
+            <nav class="navigationBox">
+                <a href="3.0_admin.html"><img src="Assets/rave_wbl_logo_v2.png" class="rave-wbl-logo"></a>
+                <a href="3.0_admin.html" class="links">Admin</a>
+                <a href="3.1_admin_job_portal.html" class="links">Jobs Portal</a>
+                <a href="3.2_admin_student_progressl.html" class="links">Student Progress</a>
+            </nav>
+        </header>
+    </div>
+    <br></br>
+
+    <div id="student-progress-table-container" class="student-progress-table-container">
+        <input type="search" id="student-search" placeholder="Search Student Detail here...">
+        <br></br>
+        <select class="filter"> <!--Using "<select>" tag to integrate drop down menu for project type with an attribute of "class" ("filter") for CSS referencing-->
+            <option>Project Type</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "Project Type" is a default choice which shows that they want both internal and external project.-->
+            <option>Internal</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "Internal" is  choice which shows that they want both internal project.-->
+            <option>External</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "External" is a  choice which shows that they want both external project.-->
+        </select> <!--Close select tag-->
+        <select class="filter"> <!--Using "<select>" tag to integrate drop down menu for job type with an attribute of "class" ("filter") for CSS referencing-->
+            <option>Job Type</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "Job Type" is a default choice which shows that they want all job types.-->
+            <option>Part Time</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "Part Time" is a  choice which shows that they want part time jobs.-->
+            <option>Internship</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "Internship" is a  choice which shows that they want internship jobs.-->
+            <option>Placement</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "Placement" is a  choice which shows that they want placement jobs.-->
+        </select> <!--Close select tag-->
+        <select class="filter"> <!--Using "<select>" tag to integrate drop down menu for courses with an attribute of "class" ("filter") for CSS referencing-->
+            <option>Course</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "Course" is a default choice which shows that they want all courses.-->
+            <option>Computer Science</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "Computer Science" is a  choice which shows that they want jobs within Computer Science field.-->
+            <option>Fashion</option> <!--Using "<option>" tag to add an choice when students selects drop down menu, "Fashion" is a  choice which shows that they want jobs within Fashion filed.-->
+            <option>CyberSecurity</option>
+            <br></br>
+        </select>
+        <table id="student-progress-table" class="student-progress-table">
+            <tr>
+                <th>Student ID</th>
+                <th>Job Name</th>
+                <th>Industry</th>
+                <th>Project Type</th>
+                <th>Job Type</th>
+                <th>Job Course</th>
+                <th>Student First Name</th>
+                <th>Student Last Name</th>
+                <th>Student Email Address</th>
+                <th>Student Gender</th>
+                <th>Student Avalability</th>
+                <th>Student Skills</th>
+                <th>Student Documents</th>
+                <th>Student Links</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+
+    <br></br>
+    <div class="footer-container">
+        <footer>
+            <img src="Assets/rave_wbl_logo_v2.png">
+            <p>Copyright &copy; Rave WBL All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        async function studentProgressTable(){
+               try{
+                   const getStudentProgress = await fetch("http://localhost:8080/get-student-progress");
+                   const studentProgress = await getStudentProgress.json();    
+                   const tableContainer = document.getElementById("student-progress-table");
+                   console.log("Database has been received", studentProgress)
+                   studentProgress.forEach(studentProgressItem => {
+                       const studentTableRow = document.createElement('tr');
+                       studentTableRow.innerHTML = `
+                               <tr>
+                                   <td>${studentProgressItem.Student_id}</td>
+                                   <td>${studentProgressItem.Job_Name}</td>
+                                   <td>${studentProgressItem.Industry_Name}</td>
+                                   <td>${studentProgressItem.Project_Type}</td>
+                                   <td>${studentProgressItem.Job_Type}</td>
+                                   <td>${studentProgressItem.Course}</td>
+                                   <td>${studentProgressItem.First_Name}</td>
+                                   <td>${studentProgressItem.Last_Name}</td>
+                                   <td>${studentProgressItem.Student_Email}</td>
+                                   <td>${studentProgressItem.Gender}</td>
+                                    <td>${studentProgressItem.Avalability}</td>
+                                   <td>${studentProgressItem.Skills}</td>
+                                   <td>${studentProgressItem.Document}</td>
+                                   <td><a href="${studentProgressItem.Link}">Student Profile</a></td>
+                                   <td>${studentProgressItem.Status}</td>
+                                </tr>                        
+                       `
+                       tableContainer.appendChild(studentTableRow)
+                      
+                   })
+               }catch(err){
+                   console.log(err)
+               }
+           }
+           window.onload = studentProgressTable;
+   </script>
+   <script src="JavaScript/student_search.js"></script>
+   <script src="JavaScript/student_filter.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>STAFF PORTAL HOMEPAGE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/global.css">
+    <link rel="stylesheet" href="CSS/account.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+
+</head>
+
+<body>
+    <div class="navigationBoxContainer">
+        <header>
+            <nav class="navigationBox">
+                <a href="2.0_staffPortal_homepage.html"><img src="Assets/rave_wbl_logo_v2.png" class="rave-wbl-logo"></a>
+                <a href="2.1_staff_portal_job_portal.html" class="links">Jobs Portal</a>
+                <a href="2.2_staff_portal_student_progress.html" class="links">Student Progress</a>
+                <a href="2.3_staff_portal_job_post_form_page.html" class="links">Job Post</a>
+                <a href="2.4_staff_portal_account_page.html"><img src="Assets/account_icon.png" class="accountIcon"></a>
+            </nav>
+        </header>
+    </div>
+    <br></br>
+
+    <div class="account_container">
+        <a href="0.2_login_page.html">Log Out</a> <br></br>
+        <div class="account-info-container">
+            <div class="job-posts" id="job-posts">
+                <h1 style="font-size: 32px;">Your Job Posts</h1>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+    <br></br>
+    <div class="footer-container">
+        <footer>
+            <img src="Assets/rave_wbl_logo_v2.png">
+            <p>Copyright &copy; Rave WBL All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        function profileImg(){ 
+            const inputImage = document.getElementById("inputImage")
+            const profilePic = document.getElementById("profilePic")
+
+            if(inputImage.files && inputImage.files[0]){
+                const imageProcess = new FileReader()
+
+                imageProcess.onload = function(event){
+                    profilePic.src = event.target.result;
+                    profilePic.style.display = "block";
+                }
+
+                imageProcess.readAsDataURL(inputImage.files[0])
+            }
+        }
+
+        async function jobPostSection(){
+            try{
+                const getJobDetailUrl = new URLSearchParams(window.location.search)
+                let Job_Name = getJobDetailUrl.get("Job_Name")
+                let Industry_Name = getJobDetailUrl.get("Industry_Name")
+
+                if(!Job_Name){
+                    console.log("We cannot find the job name")
+                }else if(!Industry_Name){
+                    console.log("We cannot find industry name")
+                }
+
+
+
+        Job_Name = encodeURIComponent(Job_Name)
+        Industry_Name = encodeURIComponent(Industry_Name)
+                const getResponse = await fetch("http://localhost:8080/get-job-post");
+                const jobPost = await getResponse.json();
+                const jobPostContainer = document.getElementById("job-posts");
+
+                console.log("Database has been received", jobPost)
+
+                jobPost.forEach(jobPostItem => {
+                    const jobListing = document.createElement('div');
+                    jobListing.setAttribute("data-name", jobPostItem.Job_Name)
+
+                    jobListing.classList.add("job-post-list")
+
+                    jobListing.innerHTML = `
+                        <img src="${jobPostItem.Image}" width="183px" height="118px">
+                        <h1 style="font-size: 32;">${jobPostItem.Job_Name}</h1> 
+                        <h2 style="color: #938484; font-size: 24;">${jobPostItem.Industry_Name}</h2> 
+                        <h2 style="color: #D27E7E; font-size: 24;">${jobPostItem.Job_Location}</h2> 
+                        <h2 style="color: #604F4F; font-size: 24;">${jobPostItem.Meeting_Type}</h2> 
+                        <h2 style="color: #44B527; font-size: 24;">${jobPostItem.Job_Type}</h2> 
+                        <p>INTERESTS: ${jobPostItem.Number_Of_Interest}</p>
+                        <button type="button" class="removeButton">REMOVE</button>
+                        
+                    `
+                    jobPostContainer.appendChild(jobListing)
+
+
+
+                    const removeButton = jobListing.querySelector(".removeButton")
+                    removeButton.addEventListener('click', async function(){                                
+                        jobListing.remove()
+                        const getJobName = jobListing.getAttribute("data-name")
+                        try{
+                            const deleteJobVancancy = await fetch(`http://localhost:8080/delete_job_post/${getJobName}`, {
+                                method: "DELETE"
+                            })
+
+                            if(deleteJobVancancy.ok){
+                                console.log(`${getJobName} has been removed from the list`)
+                            } else {
+                                console.log("There was an error deleting the job post")
+                            }
+                        } catch(err){
+                            console.log(err)
+                        }
+                    })
+                })
+                
+
+            }catch(err){
+                console.log(err)
+            }
+            
+
+        }
+
+        window.onload = jobPostSection;
+    </script>
+</body>
+</html>

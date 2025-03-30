@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ACCOUNT PAGE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/global.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/chatbot.css">
+    <link rel="stylesheet" href="CSS/account.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+
+</head>
+
+<body>
+    <div class="navigationBoxContainer">
+        <header>
+            <nav class="navigationBox">
+                <a href="1.0_studentPortal_homepage.html"><img src="Assets/rave_wbl_logo_v2.png" class="rave-wbl-logo"></a>
+                <a href="1.1_course.html" class="links">Course</a>
+                <a href="1.2_account_management_page.html" class="links">Acccount Management</a>
+                <a href="1.3_about_rave_wbl_page.html" class="links">About Rave WBL</a>
+                <a href="1.4_account_page.html"><img src="Assets/account_icon.png" class="accountIcon"></a>
+            </nav>
+        </header>
+    </div>
+    <br></br>
+
+    <div class="chatbot-container">
+        <button class="chatbot-button"><img src="Assets/chat_icon.png"></button>
+    </div>
+
+    <div class="account_container" id="account_container">
+        <div class="account-img" id="account-img">
+            <img src="Assets/account_icon.png" id="profilePic" width="200px" height="200px">
+        </div>
+        <br></br>
+        <div class="link">
+            <a href="0.2_login_page.html">Log Out</a> <br></br>
+            <input type="file" id="inputImage" value="Change Photo" onchange="profileImg()">
+        </div>
+        <br></br>
+        <div class="account-info-container">
+            <div class="skills" id="skills"></div>
+
+            <div class="personal-statement" id="personal-statement"></div>
+
+            <div class="certification" id="certification"></div>
+
+            <div class="experience" id="experience"></div>
+
+            <div class="availability" id="availability"></div>
+
+            <div class="documents" id="document"></div>
+
+            <div class="save-jobs" id="save-jobs"></div>
+        </div>
+    </div>
+    <br></br>
+    <div class="footer-container">
+        <footer>
+            <img src="Assets/rave_wbl_logo_v2.png">
+            <p>Copyright &copy; Rave WBL All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        function profileImg(){ 
+            const inputImage = document.getElementById("inputImage")
+            const profilePic = document.getElementById("profilePic")
+
+            if(inputImage.files && inputImage.files[0]){
+                const imageProcess = new FileReader()
+                imageProcess.readAsDataURL(inputImage.files[0])
+
+                imageProcess.onload = function(event){
+                    profilePic.src = event.target.result;
+                    profilePic.style.display = "block";
+                    imageProcess.result
+                }
+            }
+        } 
+
+
+        async function studentAccount(){
+            
+
+            try{
+                const getAccountManagementResponse = await fetch("http://localhost:8080/get-student-account-management");
+                const getStudentJobInterest = await fetch("http://localhost:8080/job-interest")
+
+                const studentAccount = await getAccountManagementResponse.json();
+                const studentJobInterest = await getStudentJobInterest.json();
+
+    
+                const imageContainer = document.getElementById("account-img");
+                const skillsContainer = document.getElementById("skills");
+                const personalStatementContainer = document.getElementById("personal-statement");
+                const certificationContainer = document.getElementById("certification");
+                const experienceContainer = document.getElementById("experience");
+                const availabilityContainer = document.getElementById("availability");
+                const documentContainer = document.getElementById("document");
+                const jobInterestContainer = document.getElementById("save-jobs")
+
+
+
+
+                console.log("Database has been received", studentAccount)
+
+                studentAccount.forEach(studentAccountItem => {
+                    const image = document.createElement("div");
+                    const skillList = document.createElement('div');
+                    const personalStatement = document.createElement('div');
+                    const certificationDetail = document.createElement('div');
+                    const experienceDetail = document.createElement('div');
+                    const availability = document.createElement('div');
+                    const documentList = document.createElement('div');
+
+                    image.classList.add("image")
+                    skillList.classList.add("skill-list")
+                    personalStatement.classList.add("personal-statement")
+                    certificationDetail.classList.add("certification")
+                    experienceDetail.classList.add("experience")
+                    availability.classList.add("availability")
+                    documentList.classList.add("document")
+
+
+                    image.innerHTML = `
+                        <img src="${studentAccountItem.Image}" id="profilePic" width="200px" height="200px">
+                    `
+
+                    skillList.innerHTML = `
+                        <h1 style="font-size: 32px;">Your Skills</h1>
+                        <li>${studentAccountItem.Skills}</li>
+
+                    `
+
+                    personalStatement.innerHTML = `
+                        <h1 style="font-size: 32px;">Your Personal Statement</h1>
+                        <span><b>Student ID</b> <p>${studentAccountItem.Student_id}</p></span>
+                        <span><b>First Name</b> <p>${studentAccountItem.First_Name}</p></span>
+                        <span><b>Middle Name</b> <p>${studentAccountItem.Middle_Name}</p></span>
+                        <span><b>Last Name</b> <p>${studentAccountItem.Last_Name}</p></span>
+                        <span><b>Email Address</b> <p>${studentAccountItem.Student_Email}</p></span>
+                        <span><b>Course</b> <p>${studentAccountItem.Course}</p></span>
+                        <span><b>Gender</b> <p>${studentAccountItem.Gender}</p></span>
+                    `
+
+                    certificationDetail.innerHTML = `
+                        <h1 style="font-size: 32px;">Your Certification</h1>
+                        <span><b>Certificate Name</b> <p>${studentAccountItem.Certificate_Name}</p></span>
+                    `
+
+                    experienceDetail.innerHTML = `
+                        <h1 style="font-size: 32px;">Your Experience</h1>
+                        <span><b>Certificate Name</b> <p>${studentAccountItem.Employment_Name}</p></span>
+                        
+                    `
+
+                    availability.innerHTML = `
+                        <h1 style="font-size: 32px;">Your Availability</h1>
+                        <span><b>Availability</b> <p>${studentAccountItem.Avalability}</p></span>
+                    `
+
+                    documentList.innerHTML = `
+                        <h1 style="font-size: 32px;">Other Documents</h1>
+                        <li>${studentAccountItem.Document}</li>
+                    `
+                    imageContainer.appendChild(image)
+                    skillsContainer.appendChild(skillList)
+                    personalStatementContainer.appendChild(personalStatement)
+                    certificationContainer.appendChild(certificationDetail)
+                    experienceContainer.appendChild(experienceDetail)
+                    availabilityContainer.appendChild(availability)
+                    documentContainer.appendChild(documentList)
+                })
+
+                studentJobInterest.forEach(jobInterestItem => {
+                    const saveJobList = document.createElement('div')
+                    saveJobList.classList.add("save-jobs")
+
+                    saveJobList.innerHTML = `
+                        <h1 style="font-size: 32;">${jobInterestItem.Job_Name}</h1>
+                        <h2 style="color: #938484; font-size: 24;">${jobInterestItem.Industry_Name}</h2> 
+                        <h2 style="color: #D27E7E; font-size: 24;">${jobInterestItem.Job_Type}</h2> 
+                        <h2 style="color: #604F4F; font-size: 24;">${jobInterestItem.Project_Type}</h2> 
+                        <a href="1.5_student_portal_dynamic_job_description.html?Job_Name=${encodeURIComponent(jobInterestItem.Job_Name)}&Industry_Name=${encodeURIComponent(jobInterestItem.Industry_Name)}&Job_Type=${encodeURIComponent(jobInterestItem.Job_Type)}&Project_Type=${encodeURIComponent(jobInterestItem.Project_Type)}"><button>READ DESCRIPTION</button></a>
+                        <button type="button" class="deleteBtn" data-id="${jobInterestItem.Job_Name}">DELETE</button>
+                    `
+
+                    
+                    jobInterestContainer.append(saveJobList)
+                    const removeButton = saveJobList.querySelector(".deleteBtn")
+                    removeButton.addEventListener('click', async function(){                                
+                        saveJobList.remove()
+                        let Job_Name = saveJobList.getAttribute("data-id")
+                        Job_Name = encodeURIComponent(Job_Name)
+
+                        try{
+                            const deleteSaveJob = await fetch(`http://localhost:8080/job-interest/${Job_Name}`, {
+                                method: "DELETE"
+                            })
+
+                            if(deleteSaveJob.ok){
+                                console.log(`${Job_Name} has been removed from the list`)
+                            } else {
+                                console.log("There was an error deleting the job post")
+                            }
+                        } catch(err){
+                            console.log(err)
+                        }
+                    })
+                    
+                })
+                
+
+            }catch(err){
+                console.log(err)
+            }
+            
+
+        }
+
+        window.onload = studentAccount;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
